@@ -49,6 +49,29 @@ const words = [
     '48. Ultimately (adv)',
     '49. Anomaly (n)',
     '50. Atmosphere (n)',
+    '51. Cycle (n)',
+    '52. Dramatically (adv)',
+    '53. Factor (n)',
+    '54. Variability (n)',
+    '55. Absorb (v)',
+    '56. Drive (v)',
+    '57. Emission (n)',
+    '58. Emit (v)',
+    '59. Potential (n)',
+    '60. Retain (v)',
+    '61. Shift (n)',
+    '62. Characterize (v)',
+    '63. Equator (n)',
+    '64. Humid (adj)',
+    '65. Predictable (adj)',
+    '66. Reverse (v)',
+    '67. Vary (v)',
+    '68. Abundant (adj)',
+    '69. Account for (v)',
+    '70. Decay (n)',
+
+
+    
 
 
     
@@ -59,9 +82,20 @@ const words = [
   const generateButton = document.getElementById("generateButton");
   const randomWordElement = document.getElementById("randomWord");
   
-  generateButton.addEventListener("click", () => {
-    const randomIndex = Math.floor(Math.random() * words.length);
-    const randomWord = words[randomIndex];
-    randomWordElement.textContent = `Random word: ${randomWord}`;
-  });
+  let remainingWords = [...words]; // Tạo một bản sao của danh sách từ vựng
+
+generateButton.addEventListener("click", () => {
+  if (remainingWords.length === 0) {
+    randomWordElement.textContent = "All words used. Reset the list.";
+    return;
+  }
+
+  const randomIndex = Math.floor(Math.random() * remainingWords.length);
+  const randomWord = remainingWords[randomIndex];
+
+  // Loại bỏ từ đã chọn khỏi danh sách còn lại
+  remainingWords.splice(randomIndex, 1);
+
+  randomWordElement.textContent = `Random word: ${randomWord}`;
+});
   
